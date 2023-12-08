@@ -38,6 +38,15 @@
   font-weight: 700;
 }
 
+.options {
+  margin-left: 80px;
+  border: 2px solid rgba(18, 150, 159, 0.619);
+  width: 500px;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 .column-fields, .available-fields {
   margin: 0 70px;
 }

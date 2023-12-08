@@ -29,6 +29,16 @@ const availableFields = [
 const FieldsLinker = () => {
   const [selectedCF, setSelectedCF] = useState("");
   const [linkedFieldsList, setLnkedFieldsList] = useState([]);
+  const [associationMode, setAssociationMode] = useState('manyToMany');
+  const [enable, setEnable] = useState('enable');
+
+  const handleOptionChange = (value, field) => {
+    if(field === 'associationMode') {
+      setAssociationMode(value);
+    } else if (field === 'enableMode') {
+      setEnable(value);
+    }
+  };
 
   const onFieldlink = (val) => {
     if (selectedCF) {
@@ -48,6 +58,46 @@ const FieldsLinker = () => {
   return (
     <div>
       <h2>FieldsLinker</h2>
+      <div className="options">
+        <h3>Options:</h3>
+        <div className="choices">
+        <input
+          name="associationMode"
+          type="radio"
+          value="oneToOne"
+          checked={associationMode === 'oneToOne'}
+          onChange={(e) => handleOptionChange(e.target.value, 'associationMode')}
+        />
+        <label>oneToOne</label>
+        <input
+          name="associationMode"
+          type="radio"
+          value="manyToMany"
+          checked={associationMode === 'manyToMany'}
+          onChange={(e) => handleOptionChange(e.target.value, 'associationMode')}
+        />
+        <label>manyToMany</label>
+      </div>
+
+      <div className="choices">
+        <input
+          name="enable"
+          type="radio"
+          value="enable"
+          checked={enable === 'enable'}
+          onChange={(e) => handleOptionChange(e.target.value, 'enableMode')}
+        />
+        <label>Enable</label>
+        <input
+          name="enable"
+          type="radio"
+          value="disable"
+          checked={enable === 'disable'}
+          onChange={(e) => handleOptionChange(e.target.value, 'enableMode')}
+        />
+        <label>Disable</label>
+      </div>
+      </div>
       <div className="fields">
         <div className="column-fields">
           <h3>Columns in files</h3>
@@ -60,7 +110,7 @@ const FieldsLinker = () => {
                       ? "selectedDragableContent"
                       : "dragableContent"
                   }
-                  onClick={() => setSelectedCF(val)}
+                  onClick={() => enable === 'enable' && setSelectedCF(val)}
                 >
                   {val}
                 </div>
@@ -75,7 +125,7 @@ const FieldsLinker = () => {
               return (
                 <div
                   className="dragableContent"
-                  onClick={() => onFieldlink(val)}
+                  onClick={() => enable === 'enable' && onFieldlink(val)}
                 >
                   {val}
                 </div>
