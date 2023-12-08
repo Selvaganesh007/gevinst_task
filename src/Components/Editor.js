@@ -4,7 +4,7 @@ import { Editor } from "react-draft-wysiwyg";
 import { convertToHTML } from "draft-convert";
 import DOMPurify from "dompurify";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "./editor.css";
+import "./common.css";
 
 const WysiwygEditor = () => {
   const [editorState, setEditorState] = useState(() =>

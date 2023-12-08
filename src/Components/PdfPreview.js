@@ -1,5 +1,5 @@
 import React from 'react';
-import './editor.css';
+import './common.css';
 
 const PdfPreview = () => {
   return (
